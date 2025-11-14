@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 22
       - uses: bahmutov/npm-install@v1
-      - uses: npm start
+      - run: npm start
       - uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
