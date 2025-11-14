@@ -1,6 +1,6 @@
-module identity 'br/public:avm/res/managed-identity/user-assigned-identity:0.4.2' = {
-  name: 'identity'
-  params: {
-    name: 'identity'
-  }
+extension 'br:mcr.microsoft.com/bicep/extensions/microsoftgraph/v1.0:1.0.0'
+
+resource web 'Microsoft.Graph/applications@v1.0' = {
+  displayName: 'App from workflow'
+  uniqueName: 'app-from-workflow'
 }
