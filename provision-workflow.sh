@@ -5,15 +5,15 @@ export LOCATION="swedencentral"
 export REPO="markuslewin/applications-auth"
 
 # Create resource group
-az group create --name $RESOURCE_GROUP --location $LOCATION
+az group create --name "$RESOURCE_GROUP" --location "$LOCATION"
 
 # Create federated identity for workflow
 # Parse and set GitHub secrets for repo
-gh secret set --env-file <(
+gh secret set --repo "$REPO" --env-file <(
   az deployment group create \
-    --resource-group $RESOURCE_GROUP \
+    --resource-group "$RESOURCE_GROUP" \
     --template-file workflow.bicep \
-    --parameters repo=$REPO \
+    --parameters "repo=$REPO" \
     --query properties.outputs.secrets.value \
       | jq -r '.[] | "\(.name)=\(.secret)"'
 )
